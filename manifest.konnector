@@ -1,9 +1,9 @@
 {
-  "version": "1.0.0",
+  "version": "1.0.1",
   "name": "Foncia (locataire)",
   "type": "konnector",
   "language": "node",
-  "icon": "icon.png",
+  "icon": "foncia.png",
   "slug": "foncia",
   "source": "git://github.com/konnectors/foncia.git",
   "editor": "Cozy",
