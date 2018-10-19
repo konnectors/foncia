@@ -9,7 +9,7 @@ const {
   requestFactory,
   signin,
   scrape,
-  saveBills,
+  saveFiles,
   log
 } = require('cozy-konnector-libs')
 const request = requestFactory({
@@ -40,7 +40,7 @@ async function start(fields) {
   log('info', 'Fetching bills')
   const bills = await fetchBills(propertiesIds)
   log('info', 'Saving data to Cozy')
-  await saveBills(bills, fields.folderPath, {
+  await saveFiles(bills, fields.folderPath, {
     identifiers: [vendor]
   })
 }
