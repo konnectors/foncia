@@ -1,6 +1,6 @@
 {
-  "version": "1.2.0",
-  "name": "Foncia (locataire)",
+  "version": "1.1.1",
+  "name": "Foncia (propriétaire)",
   "type": "konnector",
   "language": "node",
   "icon": "foncia.png",
