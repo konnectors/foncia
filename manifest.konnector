@@ -5,7 +5,7 @@
   "language": "node",
   "icon": "foncia.png",
   "slug": "foncia",
-  "source": "git://github.com/konnectors/foncia.git",
+  "source": "git@github.com:konnectors/foncia.git",
   "editor": "Cozy",
   "vendor_link": "https://fr.foncia.com",
   "categories": [
