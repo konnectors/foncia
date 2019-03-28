@@ -93,6 +93,12 @@ async function getBillsForProperty(propertyId) {
 
   // "Go" to the page where all the documents are accessible.
   const documentsUrl = page(`a[class='Icon--book']`).attr('href')
+
+  if (!documentsUrl) {
+    log('error', 'could not find documents url')
+    throw new Error(errors.VENDOR_DOWN)
+  }
+
   const $ = await request(`${baseUrl}${documentsUrl}`)
 
   const bills = scrape(
@@ -134,17 +140,19 @@ async function fetchBills(propertiesIds) {
     }
   }
 
-  return bills.map(bill => ({
-    ...bill,
-    currency: '€',
-    fileurl: `${baseUrl}${bill.billPath}`,
-    vendor,
-    filename: `${formatFilename(bill)}.pdf`,
-    metadate: {
-      importDate: new Date(),
-      version: 1
-    }
-  }))
+  return bills
+    .filter(bill => bill.billPath)
+    .map(bill => ({
+      ...bill,
+      currency: '€',
+      fileurl: `${baseUrl}${bill.billPath}`,
+      vendor,
+      filename: `${formatFilename(bill)}.pdf`,
+      metadate: {
+        importDate: new Date(),
+        version: 1
+      }
+    }))
 }
 
 // Return a string representation of the date that follows this format:
