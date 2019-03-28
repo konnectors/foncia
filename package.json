@@ -1,6 +1,6 @@
 {
   "name": "cozy-konnector-foncia",
-  "version": "1.3.0",
+  "version": "1.2.0",
   "description": "",
   "repository": {
     "type": "git",
@@ -18,11 +18,6 @@
   "eslintIgnore": [
     "build"
   ],
-  "husky": {
-    "hooks": {
-      "pre-commit": "yarn lint"
-    }
-  },
   "scripts": {
     "start": "node ./src/index.js",
     "dev": "cozy-konnector-dev",
@@ -32,8 +27,9 @@
     "check": "konitor check .",
     "clean": "rm -rf ./data",
     "build": "webpack",
+    "precommit": "yarn lint",
     "lint": "eslint --fix .",
-    "deploy": "git-directory-deploy --directory build/ --branch ${DEPLOY_BRANCH:-build} --repo=${DEPLOY_REPOSITORY:-git@github.com:konnectors/foncia.git}",
+    "deploy": "git-directory-deploy --directory build/ --branch ${DEPLOY_BRANCH:-build} --repo=${DEPLOY_REPOSITORY:-https://$GITHUB_TOKEN@github.com/konnectors/foncia.git}",
     "cozyPublish": "cozy-app-publish --token $REGISTRY_TOKEN --build-commit $(git rev-parse ${DEPLOY_BRANCH:-build})",
     "travisDeployKey": "./bin/generate_travis_deploy_key"
   },
@@ -41,7 +37,7 @@
     "cozy-konnector-libs": "4.15.1"
   },
   "devDependencies": {
-    "copy-webpack-plugin": "5.0.2",
+    "copy-webpack-plugin": "4.6.0",
     "cozy-app-publish": "0.15.0",
     "cozy-jobs-cli": "1.8.1",
     "eslint": "5.15.3",
