@@ -7,10 +7,10 @@ process.env.SENTRY_DSN =
 const {
   BaseKonnector,
   requestFactory,
-  signin,
   scrape,
   saveFiles,
-  log
+  log,
+  errors
 } = require('cozy-konnector-libs')
 const request = requestFactory({
   // the debug mode shows all the details about http request and responses. Very usefull for
@@ -49,29 +49,25 @@ async function authenticate(username, password) {
   const url = `${baseUrl}/login`
 
   // We need to extract a CSRF token
-  const $ = await request(url)
+  let $ = await request(url)
   const _csrf_token = $("input[name='_csrf_token']").attr('value')
 
-  return signin({
-    url: `${baseUrl}/login`,
-    formSelector: '.Form',
-    formData: {
+  if (!_csrf_token) {
+    throw new Error(errors.VENDOR_DOWN)
+  }
+
+  $ = await request.post(`${baseUrl}/login_check`, {
+    form: {
       _username: username,
       _password: password,
       _csrf_token
-    },
-    validate: (statusCode, $) => {
-      if ($(`a[href='/logout']`).length === 1) {
-        return true
-      } else {
-        // cozy-konnector-libs has its own logging function which format these
-        // logs with colors in standalone and dev mode and as JSON in production
-        // mode
-        log('error', $('.error').text())
-        return false
-      }
     }
   })
+
+  if (!$(`a[href='/logout']`).length === 1) {
+    log('error', $('.error').text())
+    throw new Error(errors.LOGIN_FAILED)
+  }
 }
 
 // Get the IDs of the different properties one could own/rent.
