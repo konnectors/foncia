@@ -41,7 +41,8 @@ async function start(fields) {
   const bills = await fetchBills(propertiesIds)
   log('info', 'Saving data to Cozy')
   await saveFiles(bills, fields.folderPath, {
-    identifiers: [vendor]
+    identifiers: [vendor],
+    concurrency: 8
   })
 }
 
