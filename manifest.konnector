@@ -3,7 +3,7 @@
   "name": "Foncia (propriétaire)",
   "type": "konnector",
   "language": "node",
-  "icon": "foncia.png",
+  "icon": "icon.svg",
   "slug": "foncia",
   "source": "git@github.com:konnectors/foncia.git",
   "editor": "Cozy",
