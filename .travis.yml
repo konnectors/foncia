@@ -1,11 +1,9 @@
 language: node_js
 node_js:
-- '8'
+- '12'
 env:
   global:
-  - GH_USER_EMAIL="travis@example.org"
-  - GH_USER_NAME="cozy-bot"
-  - DEPLOY_REPOSITORY="git@github.com:konnectors/foncia.git"
+  # REGISTRY_TOKEN(editor=cozy, app=foncia)
   - secure: B6kKHh89FZKj1txvQkwIeBT28If0rsjzzLlRcGLdXfaeJ5NAjiOoyRIEi5vlZLlqCRk2A8ashkAxA3gwStadVYg9bhxQXWXZNJKJVz2Z2XfIHW6glM2ZvafdTosr7INgNX/drFInB6fG+wsYhXs3cDFG2CQYEm081/sj7bjOxIGGTVAqFd+uzVVRdYY0azXz7FcIPc2OXY3C9TfWHMnMDEXeEsIWs+mCQJmsyQLo0nLDin3hh77Z31/YGupAJpCgQBRzPIxizZ21Jmv4Ia/HUn6FA5meK/Ehk4eJNDjAFCa35M6++NyI6zVDRtKdiOjwtUkqK51UePLcCt7bAzYKeVL65l34E+efoDF/XQBI76yrfXDowKNoAq9YNOPeBRJlb31ryxdDNxkz+gfTHqNd3d/EAQF1HkzQtFdc2V5m8RI1dXlKU+61y9tSBjBdlWz97s1HNg6tdMS008/McRmm2sMeqXxcTCV+SiFVZ+eEct2Fc5uXwbtrAui7/QBl2TPBHpSdHMF8s5x9AYLUVLxJCX8Gz/2JsBkqx5DqrhK4fbggLsIyAtKFYsqxBEREzrEQKHxj2tl2eueXGbo1UI2LnzfJXVUTOujwOd7sVr0VhLIISipgurntz78hh/xZ1ZX3KgpZEBSm9+d63fgp1TxunTd76GuyR5k11tU9feHDas8=
 cache:
   yarn: true
@@ -18,7 +16,6 @@ branches:
 script:
 - yarn lint
 - yarn build
-- yarn run check
 deploy:
 - provider: script
   skip-cleanup: true
