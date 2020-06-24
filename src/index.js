@@ -59,7 +59,7 @@ async function authenticate(username, password) {
 
   $ = await request.post(`${baseUrl}/login_check`, {
     form: {
-      _username: username,
+      username: username,
       _password: password,
       _csrf_token
     }
