@@ -28,7 +28,7 @@ const request = requestFactory({
 module.exports = new BaseKonnector(start)
 
 const vendor = 'foncia'
-const baseUrl = 'https://fr.foncia.com'
+const baseUrl = 'https://myfoncia.fr'
 
 async function start(fields) {
   log('info', 'Authenticating ...')
