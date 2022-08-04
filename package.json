@@ -1,6 +1,6 @@
 {
   "name": "cozy-konnector-foncia",
-  "version": "1.5.0",
+  "version": "1.6.0",
   "description": "",
   "repository": {
     "type": "git",
@@ -37,7 +37,7 @@
     "travisDeployKey": "./bin/generate_travis_deploy_key"
   },
   "dependencies": {
-    "cozy-konnector-libs": "4.54.0"
+    "cozy-konnector-libs": "4.55.0"
   },
   "devDependencies": {
     "cozy-jobs-cli": "1.19.0",
